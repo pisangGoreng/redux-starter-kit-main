@@ -1,0 +1,42 @@
+npm start -- --reset-cache
+
+Custom fonts
+
+- install dlu custom font nya di komputer sendiri
+- bikin folder assets & copy paste font2 nya
+- bikin react-native.config.js
+- run npx react-native-asset di terminal
+- check di android/app/src/main/assets apa ada custom font nya
+
+react devtools
+
+- npm install -g react-devtools
+- execute react-devtools command
+- enable dev mode di emulator nya
+
+cek notch / responsive
+
+- npm install react-native-device-info
+- cd ios && pod install
+
+navigation
+
+- npm install @react-navigation/native
+- npm install react-native-screens react-native-safe-area-context
+- IOS => cd ios && pod install
+- ANDROID => enhance mainActivity.java
+- npm install @react-navigation/stack
+- npm install react-native-gesture-handler
+- import 'react-native-gesture-handler' di index.js *taro paling atas
+- npm install @react-native-masked-view/masked-view
+- cd ios && pod install
+- npm install @react-navigation/drawer
+- tambah di babel.config.js -> plugins: ['react-native-reanimated/plugin']
+- npm start -- --reset-cache
+
+UKURAN GAMBAR
+- biasakan pakai maxWidth, maxHeight
+  image: {
+    maxWidth: horizontalScale(150),
+    maxHeight: verticalScale(90),
+  },

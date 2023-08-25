@@ -1,0 +1,37 @@
+https://www.youtube.com/watch?v=Rub-XMihzis&ab_channel=CoderOne
+https://github.com/ipenywis/react-solid
+
+1. TRANSFORMING DATA
+
+- hindari change state di dalam useEfffect
+
+BAD 🔴
+useEffect(() => {
+if (cartProducts) {
+// calculation
+setTotalPrice(...calculation)
+}
+
+// \* ini akan bikin rerender aplikasi 2x
+}, [cartProducts])
+
+GOOD 🟢
+const totalPrice = cartProducts?.reduce()
+
+2.  HANDING EVENTS
+    BAD 🔴
+    useEffect(() => {
+    (async () => {
+    const authUser = await loginUser()
+        setAuthUser(authUser)
+        setSubmitting(false)
+    })()
+    }, [isSubmitting])
+
+GOOD 🟢
+bikin custom hooks
+const [login, isSubmitting] = useLogin()
+
+3. FETCHING DATA
+   BAD 🔴 -> fetch di dalam useEffect
+   GOOD 🟢 -> pakai useQuery

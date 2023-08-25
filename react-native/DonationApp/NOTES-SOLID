@@ -1,0 +1,27 @@
+https://github.com/ipenywis/react-solid/blob/main/src/assets/solid-principles.png
+
+S - single responsbility
+- every class should only have 1 responsbility
+
+bad
+- 1 component handle 2 task [products & filter]
+
+good
+- buat component product & filter terpisah
+- jadi 1 component hanya khusus handle 1 task
+
+O - open closed principle
+- jika ada perubahan (EXTENDS), tidak merubah base code yg sudah ada.
+- tapi perubahan itu bisa langsung ditambahin
+
+L - liskov
+??
+
+I - Interface Segregation
+- children component hanya perlu tau property yg mereka butuhkan
+- bukan passing 1 object utuh, tapi hanya passing property yg diapakai
+
+D - Dependency Inversion
+- ini mesti lihat contoh nya lg di youtube
+https://www.youtube.com/watch?v=MSq_DCRxOxw&ab_channel=CoderOne
+- intinya bikin semacam abstraction untuk component yang multifungsi

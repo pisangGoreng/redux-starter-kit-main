@@ -1,0 +1,28 @@
+
+Simple solution 
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const items = await fetchCartItems()
+        setCartItems(items)
+      }
+      catch(err) {
+        if (err) setError(err.message)
+      }
+    }
+    fetchItems()
+  }, [])
+
+  if (error) return (<ProductsFetchingError error={error} />)
+
+
+Proper solution
+  https://www.npmjs.com/package/react-error-boundary
+  - perlu di test manual
+
+  <ErrorBoundary
+    FallbackComponent={ProductsFetchingError}
+    onError={() => {console.log('error bos)}}
+  >
+  </ErrorBoundary>

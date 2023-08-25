@@ -1,0 +1,34 @@
+https://www.youtube.com/watch?v=OEDE9KqQCkg&ab_channel=CoderOne
+
+ASSETS
+
+components 
+  - untuk components2
+  - Home -> index.tsx
+  - export function Product()
+  - export interface ProductProps {} (pascalCase)
+
+HOOKS
+  - useStoreInfo
+
+PAGES
+  - untuk halaman aplikasi
+  - Home.tsx, Products.tsx, TopRatedProducts.tsx
+
+
+
+services 
+  - untuk hit API (FETCH)
+  - cartService, productService
+
+stores
+  - untuk simpat redux / slice
+  - cartSlice, productSlice
+
+TYPINGS
+  - untuk interface masing2 component / pages
+  - cart.d.ts , product.d.ts
+
+UTILS
+  - file yang tidak berhubungan dengan rendering
+  - cart, product

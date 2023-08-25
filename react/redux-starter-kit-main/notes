@@ -1,0 +1,83 @@
+
+- prepare payload sblm ke eksekusi di reducer, pakai prepare
+  postAdded: {
+      reducer: (state, action) => {
+        state.push(action.payload)
+      },
+      prepare(title, content) {
+        return { payload: {id: nanoid, title, content} }
+      },
+    }
+
+-   (ABSTRACTION) biasakan buat reusable selector functions, 
+jadi kalau ada perubahan structur di initial state, cukup rubah selector di slice nya aja.
+bukan rubah di semua component
+
+- bisa pakai nanoid untuk nomor random
+
+- actions bisa langsung di eksekusi di index.js
+  store.dispatch(fetchUsers())
+
+- unwrap()
+  await dispatch(addNewPost({ title, content, user: userId })).unwrap()
+
+  unwrap itu bawaan RTK untuk resolve atau reject promise. jadi gunakan di dalam try catch
+
+  try {
+    await dispatch(addNewPost({ title, content, user: userId })).unwrap()
+  } catch (error) {
+    console.log('failed to save the post ', error)
+  } finally {
+    setAddRequestStatus('idle')
+  }
+
+- CEK semua field sudah true
+  [title, content, userId].every(Boolean)
+
+- akses value dari createAsyncThunk
+  async (_, { getState }) => {})
+
+- memo hooks RTK
+  save previous set of input & calculated result 
+  if (input is same) {
+    return previous set instead recalculated 
+  } else {
+    recalculated
+  }
+
+  RTK punya MEMO sendiri -> createSelector
+  export const selectPostsByUser = createSelector(
+    [selectAllPosts, (state, userId) => userId],
+    (posts, userId) => posts.filter((post) => post.user === userId)
+  )
+
+- buat render list dengan memo
+  jadi jika ada perubahan di salah satu element, tidak me rerender semua element
+  
+  let PostExcerpts = ({ post }) => {
+    return (
+      <article className="post-excerpt">
+        <h3>{post.title}</h3>
+      </article>
+    )
+  }
+  PostExcerpts = React.memo(PostExcerpts)
+
+- entityAdaptor
+  untuk increase performance react & sudah ada helper nya
+  
+  export const {
+    selectAll,
+    selectById,
+    selectIds
+  } = postsAdapter.getSelectors((state) => state.posts)
+
+- component tidak boleh bergantung pada features (harus independent),
+  features boleh berangantung pk component & features lain.
+  di dalam features boleh ada component yg khusus untuk features itus aja
+
+- type cocok untuk tipe data yg valid -> string, number
+  kalau yg gado2 pakai interface
+
+- RTK options
+  data, isFetching, isSuccess, isLoading, isError, error, refetch

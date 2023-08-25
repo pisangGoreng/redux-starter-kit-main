@@ -1,0 +1,78 @@
+npm start -- --reset-cache
+
+Custom fonts
+
+- install dlu custom font nya di komputer sendiri
+- bikin folder assets & copy paste font2 nya
+- bikin react-native.config.js
+- run npx react-native-asset di terminal
+- check di android/app/src/main/assets apa ada custom font nya
+
+react devtools
+
+- npm install -g react-devtools
+- execute react-devtools command
+- enable dev mode di emulator nya
+
+cek notch / responsive
+
+- npm install react-native-device-info
+- cd ios && pod install
+
+navigation
+
+- npm install @react-navigation/native
+- npm install react-native-screens react-native-safe-area-context
+- IOS => cd ios && pod install
+- ANDROID => enhance mainActivity.java
+- npm install @react-navigation/stack
+- npm install react-native-gesture-handler
+- import 'react-native-gesture-handler' di index.js *taro paling atas
+- npm install @react-native-masked-view/masked-view
+- cd ios && pod install
+- npm install @react-navigation/drawer
+- tambah di babel.config.js -> plugins: ['react-native-reanimated/plugin']
+- npm start -- --reset-cache
+
+UKURAN GAMBAR
+- biasakan pakai maxWidth, maxHeight
+  image: {
+    maxWidth: horizontalScale(150),
+    maxHeight: verticalScale(90),
+  },
+
+REDUX 
+- npm install @reduxjs/toolkit redux react-redux redux-logger redux-persist @react-native-async-storage/async-storage
+- npm install --save-dev @redux-devtools/core
+- cd ios && pod install
+
+
+FIREBASE
+  - npm install --save @react-native-firebase/app @react-native-firebase/auth
+
+ - ANDROID
+    - koneksi ke android
+    - ambil applicationId di android/app/build.gradle
+    - download google-service.json, copy di android/app
+    - cd android && ./gradlew signingReport
+    - add classpath('com.google.gms:google-services:4.3.15') di android/build.gradle *jng lupa kasih ()
+    - add apply plugin: 'com.google.gms.google-services'  di android/app.build.gradle
+    -  ./gradlew signingReport
+
+  - APPLE
+    - buka ios/nama.xcworkspace
+    - buka project -> general -> identity -> bundle identifier 
+    - copy ke firebase
+    - nama nya bisa dirubah & disamain dengan android
+    - add file
+    - check "copy items if needed"
+    - add googleServiceInfo.plist 
+    - check di ios/projectName -> appDelegate.mm
+    - add #import <Firebase.h> di ios/projectName -> appDelegate.mm
+    - add [FIRApp configure] setelah self.moduleName
+    - add use_frameworks! :linkage => :static di ios/PodFile di dalam target "" do
+    - add $RNFirebaseAsStaticFramework = true , setelah use_frameworks
+    - disable / comment :flipper_configuration => flipper_config,
+    - disble / comment use_frameworks! :linkage => linkage.to_sym, ganti dengan use_frameworks! :linkage => :static
+    - cd ios && pod install --repo-update
+    - klo di xcode muncul pop up, pilih "read from disk"
